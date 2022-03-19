@@ -2,9 +2,9 @@
 # This file determines the settings of your NFT collection. Please read the README.md file to understand how to run this
 # program.
 
-nftName = ''  # The name of the NFT image produces by PNG-Generator
+nftName = 'VampireDonuts'  # The name of the NFT image produces by PNG-Generator
 
-imageFileFormat = ''  # Dictate the image extension when Blender renders the images
+imageFileFormat = 'PNG'  # Dictate the image extension when Blender renders the images
 # Type the exact name provided below in the '' above:
 # JPEG - Exports the .jpeg format
 # PNG - Exports the .png format
@@ -12,7 +12,7 @@ imageFileFormat = ''  # Dictate the image extension when Blender renders the ima
 # for a complete list of file formats supported by Blender. (Only use Image file extensions with imageFileFormat, 3D
 # object, or animation file extensions will cause the program to fail)
 
-animationFileFormat = ''  # Dictate the animations extension when Blender renders and compiles the images
+animationFileFormat = 'AVI_JPEG'  # Dictate the animations extension when Blender renders and compiles the images
 # Type the exact name provided below in the '' above:
 # AVI_JPEG - Exports the .avi jpeg format
 # AVI_RAW - Exports the .avi raw format
@@ -21,7 +21,7 @@ animationFileFormat = ''  # Dictate the animations extension when Blender render
 # Visit https://docs.blender.org/api/current/bpy.types.Image.html#bpy.types.Image.file_format
 # for a complete list of file formats supported by Blender. (These are the Blender only supported animation formats)
 
-modelFileFormat = ''  # The file format of the objects you would like to export
+modelFileFormat = 'glb'  # The file format of the objects you would like to export
 # Type the exact name provided below in the '' above:
 # fbx - The .FBX file format
 # glb - The .glb file format
@@ -31,7 +31,7 @@ modelFileFormat = ''  # The file format of the objects you would like to export
 # for a complete list of object formats supported by Blender.
 
 # The path to Blend_My_NFTs folder:
-save_path_mac = ''
+save_path_mac = '/Users/10426/Desktop/mchen50_github/Blend_My_NFTs'
 save_path_linux = ''
 save_path_windows = r''
 # Place the path in the '', e.g: save_path_mac = '/Users/Path/to/Blend_My_NFTs'
@@ -39,26 +39,41 @@ save_path_windows = r''
 # Example linux: /Users/Path/to/Blend_My_NFTs
 # Example windows: C:\Users\Path\to\Blend_My_NFTs
 
-maxNFTs = 0  # The maximum number of NFTs you want to generate.
-nftsPerBatch = 0  # Number of NFTs per batch (Batches split maxNFTs into smaller manageable chunks)
-renderBatch = 0  # The batch number to render in Exporter.py
+maxNFTs = 50  # The maximum number of NFTs you want to generate.
+nftsPerBatch = 5  # Number of NFTs per batch (Batches split maxNFTs into smaller manageable chunks)
+renderBatch = 10  # The batch number to render in Exporter.py
+
+######################################################
+# Step 1. Generate DNA
+# Set enableExporter = False
+######################################################
+
+######################################################
+# Step 2. Export
+# Set enableExporter = True
+######################################################
 
 # Set to True to generate images or 3D models depending on your settings below when main.py is run in Blender. Only works
 # if you have already generated NFTRecord.json and all batches.
-enableExporter = False
+enableExporter = True
 
-enableImages = False  # Renders and exports Images when main.py is run in Blender if enableExporter = True
+enableImages = True  # Renders and exports Images when main.py is run in Blender if enableExporter = True
 enableAnimations = False  # Renders and exports Animations when main.py is run in Blender if enableExporter = True
 enableModelsBlender = False  # Generates 3D models when main.py is run in Blender if enableExporter = True
 # ^^ Generates models with .blend file NOT external object library.
 
 # Enables Rarity_Sorter to weigh NFT DNA attributes and variants:
-enableRarity = False
+enableRarity = True
 # generateColors must be turned off and enableMaxNFTs must be turned on.
 # True = include weighted rarity percentages in NFTRecord.json calculations,
 # False = Pure random selection of variants
 # Note: The more attributes and variants you have, and by nature the more possible NFT combinations you have, the more
 # accurate your percentages will be.
+
+######################################################
+# Step 3. Final collection and metadata output
+# Set refactorBatchOrder = True
+######################################################
 
 refactorBatchOrder = False  # When set to True, sorts, renames, and moves all NFTs files in all batches in NFT_Output
 # folder to the Complete_Collection folder.
@@ -69,7 +84,7 @@ refactorBatchOrder = False  # When set to True, sorts, renames, and moves all NF
 # Set the following to True to generate the format of the Meta Data template for your NFTs blockchain. (You can use multiple)
 cardanoMetaData = False  # Cardano - Format Source: https://cips.cardano.org/cips/cip25/
 solanaMetaData = False  # Solana - Format Source: https://docs.metaplex.com/nft-standard
-erc721MetaData = False  # Ethereum ERC721 - Format Source: https://docs.opensea.io/docs/metadata-standards
+erc721MetaData = True  # Ethereum ERC721 - Format Source: https://docs.opensea.io/docs/metadata-standards
 
 turnNumsOff = True  # When set to True, turns off the extension numbers representing order and rarity from the names of
 # variants in meta Data.
@@ -80,14 +95,14 @@ turnNumsOff = True  # When set to True, turns off the extension numbers represen
 # and fill them in with a script of your own when you mint your NFT collection. These metadata templates are only provided
 # for your convenience and are as accurate to the standards above that I could make them.
 
-metaDataDescription = ''  # The description of your NFT that will be inserted into its meta data
+metaDataDescription = 'Vampire Donut Collection'  # The description of your NFT that will be inserted into its meta data
 
 # ADVANCED FEATURES:
 ### Select colour or material.###
 # Object generation options:
 enableGeneration = False  # When set to true this applies the sets of colors listed below to the objects in the collections named below
 
-generationType = 'material'  # You can either set 'color' or 'material' here. Type you set will correspond to following options.
+generationType = 'color'  # You can either set 'color' or 'material' here. Type you set will correspond to following options.
 # generationType = 'material' mode is experimental. Be sure that you back-up your file.
 # You need to set materials as "fake user". Do not miss this step. Or your materials going to vanish after running this script.
 
@@ -128,7 +143,7 @@ enable3DModels = False  # Set to True if using external models as attributes ins
 # be displayed in the Blender terminal or console. enableExporter must be False, and enableImages and/or enableModelsBlender
 # to run a preview.
 runPreview = False
-maxNFTsTest = 5  # Increase to get a more accurate reading of the render time. The number of images generated in the render test.
+maxNFTsTest = 10  # Increase to get a more accurate reading of the render time. The number of images generated in the render test.
 
 # Turn this on when you run main.py to generate NFTRecord.json and appropriate batches to confirm there are no duplicate
 # NFT DNA. Note - This file is provided for transparency, it is impossible for duplicates to be made with the current code in

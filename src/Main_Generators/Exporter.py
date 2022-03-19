@@ -66,6 +66,10 @@ def render_and_save_NFTs():
     for a in BatchDNAList:
         for i in hierarchy:
             for j in hierarchy[i]:
+                if j.startswith("None_0"):
+                    # Skip None_0 variant which is reserved as a special skipping rendering signal
+                    continue
+
                 if config.enableGeneration:
                     '''
                      Remove Color code so blender recognises the collection
@@ -84,7 +88,9 @@ def render_and_save_NFTs():
             dnaDictionary = {}
 
             for i, j in zip(listAttributes, listDnaDecunstructed):
-                dnaDictionary[i] = j
+                # Skip number 0 which is reserved as a special skipping rendering signal
+                if j != 0:
+                    dnaDictionary[i] = j
 
             for x in dnaDictionary:
                 for k in hierarchy[x]:
@@ -106,6 +112,11 @@ def render_and_save_NFTs():
 
         for c in dnaDictionary:
             collection = dnaDictionary[c]
+
+            if collection.startswith("None_0"):
+                # Skip None_0 variant which is reserved as a special skipping rendering signal
+                continue
+
             if not config.enableGeneration:
                 bpy.data.collections[collection].hide_render = False
                 bpy.data.collections[collection].hide_viewport = False
@@ -126,6 +137,11 @@ def render_and_save_NFTs():
         if config.enableGeneration:
             for c in dnaDictionary:
                 collection = dnaDictionary[c]
+
+                if collection.startswith("None_0"):
+                    # Skip None_0 variant which is reserved as a special skipping rendering signal
+                    continue
+
                 if stripColorFromName(collection) in config.colorList:
                     colorVal = int(collection.rsplit("_", 1)[1])-1
                     collection = stripColorFromName(collection)
@@ -168,6 +184,10 @@ def render_and_save_NFTs():
 
             for i in dnaDictionary:
                 coll = dnaDictionary[i]
+
+                if coll.startswith("None_0"):
+                    # Skip None_0 variant which is reserved as a special skipping rendering signal
+                    continue
 
                 for obj in bpy.data.collections[coll].all_objects:
                     obj.select_set(True)
@@ -214,6 +234,9 @@ def render_and_save_NFTs():
         for a in BatchDNAList:
             for i in hierarchy:
                 for j in hierarchy[i]:
+                    if j.startswith("None_0"):
+                        # Skip None_0 variant which is reserved as a special skipping rendering signal
+                        continue
                     if config.enableGeneration:
                         j = stripColorFromName(j)
                     bpy.data.collections[j].hide_render = False
