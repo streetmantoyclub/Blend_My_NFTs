@@ -52,6 +52,10 @@ def returnSolanaMetaData(name, description, NFT_DNA, NFT_Variants):
     attributes = []
 
     for i in NFT_Variants:
+        if i == "None":
+            # Skip None variant which is reserved as a special skipping rendering signal
+            continue
+        
         dictionary = {
             "trait_type": i,
             "value": NFT_Variants[i]
@@ -83,6 +87,10 @@ def returnErc721MetaData(name, description, NFT_DNA, NFT_Variants):
     attributes = []
 
     for i in NFT_Variants:
+        if i == "None":
+            # Skip None variant which is reserved as a special skipping rendering signal
+            continue
+
         dictionary = {
             "trait_type": i,
             "value": NFT_Variants[i]
